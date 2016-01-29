@@ -1,0 +1,175 @@
+<h1 id="jquery-lightgallery">jQuery lightGallery</h1>
+<h2 id="demo">Demo</h2>
+<p><a href="http://sachinchoolur.github.io/lightGallery/">JQuery lightGallery demo</a></p>
+<h2 id="description">Description</h2>
+<p>JQuery lightGallery is a lightweight jQuery lightbox gallery for displaying image and video gallery</p>
+<h2 id="what-s-new">what&#39;s new</h2>
+<ul>
+<li>Animated thumbnails.</li>
+<li>Local html5 video support</li>
+<li>Custom Html inseted of caption and description.</li>
+<li>Custom selector property insted of just child.</li>
+<li>destroy() method.</li>
+<li>isActive() to check gallery active state.</li>
+<li>iframe support.</li>
+<li>showAfterLoad settings to show content once it is fully loaded</li>
+<li>Callback parameter(plugin).</li>
+<li>HTML support. inline and external.</li>
+<li>currentPagerPosition setting to set Position of selected thumbnail.</li>
+<li>Show Thumbnail by default option.</li>
+<li>Added support for youtube player parameters to modify player appearance and functionality</li>
+</ul>
+<h2 id="main-features">Main Features</h2>
+<ul>
+<li>Responsive layout.</li>
+<li>Touch support for mobile devices.</li>
+<li>Animated thumbnails.</li>
+<li>CSS transitions with jQuery fallback</li>
+<li>Youtube Vimeo Video and html5 videos Support</li>
+<li>Slide and Fade Effects</li>
+<li>Chrome, Safari, Firefox, Opera, IE7+, IOS, Android, windows phone.</li>
+<li>HTML iframe support.</li>
+<li>Multiple instances on one page</li>
+<li>Easily customizable via CSS and Settings</li>
+<li>Lightweight (7kb) (minified)</li>
+<li>Separate images for mobile devices</li>
+<li>Can be extended with callbacks</li>
+<li>Smart image preloading and code optimization</li>
+<li>Keyboard Navigation for desktop</li>
+<li>Font icon support</li>
+</ul>
+<h2 id="how-to-use-lightgallery-">How to use lightGallery?</h2>
+<h3 id="bower">Bower</h3>
+<p>You can Install lightgallery using the <a href="http://bower.io">Bower</a> package manager.</p>
+<pre><code class="lang-sh">$ bower install lightgallery
+</code></pre>
+<h3 id="npm">npm</h3>
+<p>You can also find lightgallery on <a href="http://npmjs.org">npm</a>.</p>
+<pre><code class="lang-sh">$ npm install lightgallery
+</code></pre>
+<h3 id="the-code">The code</h3>
+<p>Add the Following code to the &lt;head&gt; of your document.</p>
+<pre><code class="lang-html">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;css/lightGallery.css&quot; /&gt;
+&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/lightGallery.js&quot;&gt;&lt;/script&gt;
+// Do not include both lightGallery.js and lightGallery.min.js
+</code></pre>
+<h3 id="html-structure">HTML Structure</h3>
+<p>Create ul and li elements and add the path of the image or video inside the data-src attributes which you wish to open within the lightGallery.</p>
+<pre><code class="lang-html">&lt;ul id=&quot;light-gallery&quot;&gt;
+  &lt;li data-src=&quot;img/img1.jpg&quot;&gt;
+    &lt;img src=&quot;img/thumb1.jpg&quot; /&gt;
+  &lt;/li&gt;
+  &lt;li data-src=&quot;img/img2.jpg&quot;&gt;
+    &lt;img src=&quot;img/thumb2.jpg&quot; /&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;
+</code></pre>
+<h3 id="data-attributes">Data attributes</h3>
+<pre><code class="lang-html">    &lt;!-- the image/video source for mobile devices --&gt;
+    &lt;li data-responsive-src=&quot;mobile1.jpg&quot; &gt; &lt;/li&gt;
+    &lt;!-- the large version of your image/video --&gt;
+    &lt;li data-src=&quot;img1.jpg&quot; &gt; &lt;/li&gt;
+
+    &lt;!-- Custom html5 video html (will be inserted same like youtube vimeo videos) --&gt;
+    &lt;li data-html=&quot;video html&quot; /&gt; &lt;/li&gt;
+    &lt;!-- id or class name of an object(div) which contain your html. --&gt;
+    &lt;li data-html=&quot;#inline-html&quot; &gt; &lt;/li&gt;
+
+    &lt;!-- Custom html (Caption description comments ...) --&gt;
+    &lt;li data-sub-html=&quot;&lt;h3&gt;My caption&lt;/h3&gt;&lt;p&gt;My description..&lt;/p&gt;&quot; /&gt; &lt;/li&gt;
+    &lt;!-- id or class name of an object(div) which contain your html. --&gt;
+    &lt;li data-sub-html=&quot;#inline-sub-html&quot; &gt; &lt;/li&gt;
+
+    &lt;!-- If true your src will be displayed in an iframe.. --&gt;
+    &lt;li data-iframe=&quot;true&quot; data-src=&quot;http://www.w3schools.com/&quot; &gt; &lt;/li&gt;
+</code></pre>
+<h3 id="call-lightgallery-">Call lightGallery!</h3>
+<pre><code class="lang-html">&lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function() {
+    $(&quot;#light-gallery&quot;).lightGallery();
+  });
+&lt;/script&gt;
+</code></pre>
+<h3 id="play-with-settings">Play with settings</h3>
+<pre><code class="lang-html">    &lt;script type=&quot;text/javascript&quot;&gt;
+      $(document).ready(function() {
+        $(&quot;#light-gallery&quot;).lightGallery({
+
+          mode: &#39;slide&#39;,
+          useCSS: true,
+          cssEasing: &#39;ease&#39;, //&#39;cubic-bezier(0.25, 0, 0.25, 1)&#39;,//
+          easing: &#39;linear&#39;, //&#39;for jquery animation&#39;,//
+          speed: 600,
+          addClass: &#39;&#39;,
+
+          closable: true,
+          loop: false,
+          auto: false,
+          pause: 4000,
+          escKey: true,
+          controls: true,
+          hideControlOnEnd: false,
+
+          preload: 1, //number of preload slides. will exicute only after the current slide is fully loaded. ex:// you clicked on 4th image and if preload = 1 then 3rd slide and 5th slide will be loaded in the background after the 4th slide is fully loaded.. if preload is 2 then 2nd 3rd 5th 6th slides will be preloaded.. ... ...
+          showAfterLoad: true,
+          selector: null,
+          index: false,
+
+          lang: {
+              allPhotos: &#39;All photos&#39;
+          },
+          counter: false,
+
+          exThumbImage: false,
+          thumbnail: true,
+          showThumbByDefault:false,
+          animateThumb: true,
+          currentPagerPosition: &#39;middle&#39;,
+          thumbWidth: 100,
+          thumbMargin: 5,
+
+
+          mobileSrc: false,
+          mobileSrcMaxWidth: 640,
+          swipeThreshold: 50,
+          enableTouch: true,
+          enableDrag: true,
+
+          vimeoColor: &#39;CCCCCC&#39;,
+          youtubePlayerParams: false, // See: https://developers.google.com/youtube/player_parameters,
+          videoAutoplay: true,
+          videoMaxWidth: &#39;855px&#39;,
+
+          dynamic: false,
+          dynamicEl: [],
+
+          // Callbacks el = current plugin
+          onOpen        : function(el) {}, // Executes immediately after the gallery is loaded.
+          onSlideBefore : function(el) {}, // Executes immediately before each transition.
+          onSlideAfter  : function(el) {}, // Executes immediately after each transition.
+          onSlideNext   : function(el) {}, // Executes immediately before each &quot;Next&quot; transition.
+          onSlidePrev   : function(el) {}, // Executes immediately before each &quot;Prev&quot; transition.
+          onBeforeClose : function(el) {}, // Executes immediately before the start of the close process.
+          onCloseAfter  : function(el) {}, // Executes immediately once lightGallery is closed.
+
+        });
+    });
+    &lt;/script&gt;
+</code></pre>
+<p>In-depth explanation of settings can be found on a <a href="http://sachinchoolur.github.io/lightGallery/settings.html">separate page</a>.</p>
+<h3 id="public-methods">Public methods</h3>
+<pre><code class="lang-html">    &lt;script type=&quot;text/javascript&quot;&gt;
+    $(document).ready(function() {
+        var gallery = $(&quot;#light-gallery&quot;).lightGallery();
+        gallery.isActive(); //check active state of lightGallery;
+        gallery.destroy(); //to destroy the plugin on the given element.
+    });
+    &lt;/script&gt;
+</code></pre>
+<h3 id="report-an-issue">Report an Issue</h3>
+<p>If you think you might have found a bug or if you have a feature suggestion please use github <a href="https://github.com/sachinchoolur/lightGallery/issues/new">issue tracker</a>. Also please try to add a jsfiddle that demonstrates your problem </p>
+<p>If you need any help with implementing lightGallery in your project or if have you any personal support requests i requset you to please use <a href="https://stackoverflow.com/">stackoverflow</a> instead of github issue tracker</p>
+<p>If you like lightGallery support me by staring this repository or tweet about this project.
+<a href="https://twitter.com/sachinchoolur">@sachinchoolur</a></p>

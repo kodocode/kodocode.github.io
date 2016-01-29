@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="gameDirectory">
+	<head>
+	 	<meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Board Game Geek Game Listing</title>
+        <meta name="description" content="View a Board Game Geek users game library and decide what to play.">
+        
+        <meta name="author" content="Joe McCormick">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/vender/bootstrap/css/bootstrap.min.css" />
+	</head>
+	<body ng-controller="UserController as userCtrl">
+		<div class="container">
+			<div class="row">
+				<header class="col-sm-12">
+				<h1>BGG Game Listing</h1>
+				</header>
+			</div>			
+		</div>
+
+		<div class="container" ng-hide="userCtrl.validDisplay">
+			<div class="row">
+				<div class="col-sm-12">
+					<p>
+					Enter a BGG username to browse their game library. 
+					</p>
+					<form name="userIDForm"	ng-submit="userCtrl.lookupUser(user)">
+		            	<!--  Review Form -->
+		            	<fieldset class="form-group">
+		            		<!-- <input type="text" class="form-control" ng-model="user" placeholder="BGG Username" title="user" value="Shinkodo"/> -->
+		            		<input type="text" class="form-control" ng-model="user" ng-init="user='Shinkuko'" title="user" value="Shinkuko"/>
+		            	</fieldset>
+		            	<fieldset class="form-group">
+		            		<input type="submit" class="btn btn-primary pull-right" value="Lookup Game Library" />
+		            	</fieldset>
+		            </form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row" ng-show="userCtrl.validDisplay">
+				<div class="col-sm-12">
+					<form>
+						<fieldset class="form-group">	
+							<label for="name">Search Game Name: </label><input id="name" class="form-control" ng-model="gameFilter.name">
+						</fieldset>
+
+						<fieldset class="form-group">	
+							<label for="minPlayer">Min Players:</label>
+							<select id="minPlayer" class="form-control" ng-init="gameFilter.playerMin = 99" ng-model="gameFilter.playerMin">
+								<option value="99" selected="selected">Any</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</fieldset>
+
+						<fieldset class="form-group">	
+							<label for="maxPlayer">Max Players:</label>
+							<select id="maxPlayer" class="form-control" ng-init="gameFilter.playerMax=0" ng-model="gameFilter.playerMax">
+								<option value="0" selected="selected">Any</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="game in userCtrl.gameDisplay | filter:{name:gameFilter.name} | filter:userCtrl.lessThan('playerMin' ,gameFilter.playerMin) | filter:userCtrl.greaterThan('playerMax' ,gameFilter.playerMax)">
+							<div class="row">
+								<div class="col-xs-4">
+									<image ng-src="{{game.thumbnail}}" style="max-width:100%;">
+								</div>
+
+								<div class="col-xs-8">
+									<h4 style="margin-top:0;"><a href="https://boardgamegeek.com/boardgame/{{game.ID}}" target="_blank">{{game.name}}</a></h4>
+									Min Players: {{game.playerMin}}<br/>
+									Max Players: {{game.playerMax}}<br/>
+									Playtime: {{game.playTime}} minutes							
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="assets/vender/jquery.xml2json.js" type="text/javascript" language="javascript"></script>
+		<script type="text/javascript" src="assets/scripts/helper.js"></script>
+		<script type="text/javascript" src="assets/vender/angular.min.js"></script>		
+		<script type="text/javascript" src="assets/scripts/app.js"></script>	
+
+	</body>
+</html>
