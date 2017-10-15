@@ -1,0 +1,1 @@
+var game=new Phaser.Game(window.innerWidth,window.innerHeight,Phaser.AUTO,'');game.state.add('Boot',AlphaPhase.Boot),game.state.add('Preloader',AlphaPhase.Preload),game.state.add('MainMenu',AlphaPhase.MainMenu),game.state.add('Game',AlphaPhase.Game),game.state.add('GameOver',AlphaPhase.GameOver),game.state.start('Boot');
